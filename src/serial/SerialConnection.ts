@@ -1,4 +1,5 @@
-import SerialPort from 'serialport';
+import { SerialPort } from 'serialport';
+import { PortInfo } from '@serialport/bindings-interface';
 import Crc from './Crc';
 import { defaultOpts } from './types';
 
@@ -14,7 +15,7 @@ class SerialConnection {
   private received: Buffer;
   constructor(com: string, onOpenCb: (err: unknown) => void) {
     this.com = com;
-    this.port = new SerialPort(com, defaultOpts);
+    this.port = new SerialPort({ path: com, ...defaultOpts });
     this.port.on('error', this.onError);
     this.port.on('open', this.onOpen.bind(this));
     this.port.on('data', this.onData.bind(this));
@@ -24,11 +25,11 @@ class SerialConnection {
     this.onOpenCb = onOpenCb;
   }
 
-  static getCOMs(): Promise<SerialPort.PortInfo[]> {
+  static getCOMs(): Promise<PortInfo[]> {
     return new Promise((resolve) => {
       SerialPort.list().then(
-        (ports: SerialPort.PortInfo[]) => resolve(ports),
-        (err: any) => resolve([])
+        (ports: PortInfo[]) => resolve(ports),
+        () => resolve([])
       );
     });
   }
@@ -56,7 +57,7 @@ class SerialConnection {
     try {
       this.isBusy = true;
       this.port.write(data);
-      this.port.drain((err) => {
+      this.port.drain((err: Error | null | undefined) => {
         if (err) {
           this.reject('drain error');
           console.log('drain error', err);
