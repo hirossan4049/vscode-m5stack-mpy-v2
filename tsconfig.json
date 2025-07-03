@@ -10,10 +10,12 @@
     "strict": true /* enable all strict type-checking options */,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "typeRoots": [
       "./node_modules/@types",
       "./types"
-    ]
+    ],
+    "types": []
   },
   "exclude": [
     "node_modules",

@@ -151,6 +151,7 @@
 	"devDependencies": {
 		"@jest/types": "^27.4.2",
 		"@types/glob": "^7.1.4",
+		"@types/minimatch": "^6.0.0",
 		"@types/mocha": "^5.2.6",
 		"@types/node": "14.x",
 		"@types/serialport": "^8.0.2",
