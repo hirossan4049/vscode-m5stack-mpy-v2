@@ -156,6 +156,12 @@ describe('PortList', () => {
       jest.spyOn(SerialConnection, 'getCOMs').mockResolvedValue([
         {
           path: '/dev/device',
+          manufacturer: undefined,
+          serialNumber: undefined,
+          pnpId: undefined,
+          locationId: undefined,
+          vendorId: undefined,
+          productId: undefined,
         },
       ]);
       // @ts-ignore

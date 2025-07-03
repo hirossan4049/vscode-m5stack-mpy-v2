@@ -99,7 +99,16 @@ yarn test --testNamePattern="pattern"
 
 ### Native Dependencies
 
-The extension uses precompiled serialport bindings stored in `lib/native/` for different platforms and architectures. The `serialPortBindingsLoader.js` script dynamically loads the correct binary based on the runtime environment.
+**✅ Migrated to N-API (Node-API)**
+
+As of version 1.1.10+, this extension uses serialport 13.0.0, which includes N-API support. This eliminates the previous compatibility issues with different Node.js versions:
+
+- **No more manual binding management**: The old `serialPortBindingsLoader.js` system has been removed
+- **Universal compatibility**: N-API provides ABI stability across Node.js versions
+- **Prebuild support**: Uses official prebuilt binaries from `@serialport/bindings-cpp`
+- **Better Electron support**: Significantly improved compatibility with VS Code's Electron runtime
+
+The extension now works seamlessly across different VS Code versions without requiring version-specific native bindings.
 
 ### Testing Strategy
 

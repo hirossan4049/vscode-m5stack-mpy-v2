@@ -3,27 +3,12 @@ import { endProvider, startProvider } from './providers/completion/M5CompletionP
 import { hoverProvider } from './providers/hover/M5HoverProvider';
 import M5FileSystemProvider, { DOCUMENT_URI_SCHEME } from './providers/M5FileSystemProvider';
 import portList from './ui/PortList';
-import { BindingsHelper } from './utils/bindingsHelper';
 
 // Extensions code samples
 // https://github.com/microsoft/vscode-extension-samples
 // https://code.visualstudio.com/api/references/extension-guidelines
-export async function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
   console.log('Extension "vscode-m5stack-mpy" is now active!');
-
-  // Ensure native bindings are available for the current environment
-  try {
-    const bindingsAvailable = await BindingsHelper.checkBindings();
-    if (!bindingsAvailable) {
-      console.log('Native bindings not found, setting up...');
-      await BindingsHelper.ensureBindings();
-    }
-  } catch (error) {
-    console.error('Failed to setup native bindings:', error);
-    vscode.window.showErrorMessage(
-      `Failed to initialize serial port bindings: ${error}. The extension may not work properly.`
-    );
-  }
 
   const selectPorts = () => portList.selectPorts();
   const openFile = (port: string, filepath: string) => portList.readFile(port, filepath);

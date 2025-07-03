@@ -142,7 +142,6 @@
 		"compile": "webpack",
 		"lint": "eslint src --ext ts",
 		"package": "webpack --mode production --devtool hidden-source-map",
-		"postinstall": "node serialPortBindingsLoader.js",
 		"rebuild": "node rebuild-serialport.js",
 		"preintegration-tests": "tsc -p . --outDir out && yarn run compile && yarn run lint",
 		"integration-tests": "node ./out/test/runTest.js",
@@ -180,7 +179,7 @@
 		"webpack-cli": "^4.8.0"
 	},
 	"dependencies": {
-		"serialport": "10.0.1"
+		"serialport": "13.0.0"
 	},
 	"packageManager": "yarn@4.1.1"
 }
