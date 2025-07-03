@@ -70,7 +70,7 @@ Below corresponding list of NodeJS version used in VSCode compiled version:
 - 12.14.1
 */
 const copyBindings = () => {
-  const nodeJSVersions = ['12.14.1', '12.18.3', '12.4.0', '12.8.1', '14.16.0', '16.13.0', '16.13.2', '16.14.2', '16.17.1', '18.15.0'];
+  const nodeJSVersions = ['12.14.1', '12.18.3', '12.4.0', '12.8.1', '14.16.0', '16.13.0', '16.13.2', '16.14.2', '16.17.1', '18.17.1', '18.15.0', '20.9.0', '20.10.0', '20.11.0', '20.11.1', '20.12.0', '20.13.0', '20.14.0', '20.15.0', '20.16.0', '20.17.0', '20.18.0'];
   const plaformsAndArch = [
     'darwin-x64',
     'darwin-arm',
@@ -88,7 +88,7 @@ const copyBindings = () => {
   try {
     // Remove lastly locally build
     fs.unlinkSync(path.join(__dirname, `/node_modules/@serialport/bindings/build/Release/bindings.node`));
-  } catch (e) {}
+  } catch (e) { }
 
   nodeJSVersions.forEach((n) => {
     plaformsAndArch.forEach((p) => {

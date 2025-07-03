@@ -20,7 +20,7 @@ const getVsCodeElectionVersion = async () => {
 
   const matches = versionRegexp.exec(body);
 
-  if (matches.groups && matches.groups.version) {
+  if (matches && matches.groups && matches.groups.version) {
     return Promise.resolve(matches.groups.version);
   }
 
