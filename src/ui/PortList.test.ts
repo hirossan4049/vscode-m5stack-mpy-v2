@@ -110,6 +110,7 @@ const buildActiveTextEditor = () => ({
     isDirty: false,
     isClosed: false,
     eol: vscode.EndOfLine.LF,
+    encoding: 'utf8',
     save: jest.fn(),
     lineAt: jest.fn(),
     lineCount: 0,

@@ -7,7 +7,6 @@ coverage/
 dist/
 *.code-workspace
 .DS_Store
-.yarn/
-.yarnrc.yml
 *.vsix
 .claude/
+pnpm-lock.yaml

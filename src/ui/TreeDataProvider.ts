@@ -55,8 +55,8 @@ export class M5FSResource extends vscode.TreeItem {
     }
 
     this.iconPath = {
-      light: path.join(__filename, '..', '..', 'resources', 'light', this.icon),
-      dark: path.join(__filename, '..', '..', 'resources', 'dark', this.icon),
+      light: vscode.Uri.file(path.join(__filename, '..', '..', 'resources', 'light', this.icon)),
+      dark: vscode.Uri.file(path.join(__filename, '..', '..', 'resources', 'dark', this.icon)),
     };
   }
 }

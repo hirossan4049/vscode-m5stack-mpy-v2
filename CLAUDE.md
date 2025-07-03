@@ -9,32 +9,37 @@ This is a VS Code extension for M5Stack MicroPython development. It provides ser
 ## Common Development Commands
 
 ### Build and Development
+
+**Package Manager: pnpm**
+
+This project uses pnpm for faster and more efficient dependency management.
+
 ```bash
 # Install dependencies
-yarn
+pnpm install
 
 # Compile the extension
-yarn compile
+pnpm compile
 
 # Watch mode for development
-yarn watch
+pnpm watch
 
 # Build for production
-yarn package
+pnpm package
 
 # Run linting
-yarn lint
+pnpm lint
 
 # Run unit tests
-yarn test
+pnpm test
 
 # Run integration tests
-yarn integration-tests
+pnpm integration-tests
 
 # Clean and rebuild
 git clean -fdX
-yarn cache clean
-yarn
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
 ```
 
 ### Creating a VSIX Package
