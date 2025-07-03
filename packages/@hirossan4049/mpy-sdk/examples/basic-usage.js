@@ -1,8 +1,8 @@
 /**
- * Basic usage example for @m5stack/serial-client
+ * Basic usage example for @hirossan4049/mpy-sdk
  */
 
-const { M5StackClient } = require('@m5stack/serial-client');
+const { M5StackClient } = require('@hirossan4049/mpy-sdk');
 
 async function basicExample() {
   // Create client with options
@@ -60,7 +60,7 @@ async function basicExample() {
     // Create a simple Python file
     console.log('Creating test file...');
     const pythonCode = `
-# Test file created by @m5stack/serial-client
+# Test file created by @hirossan4049/mpy-sdk
 import time
 print("Test file executed!")
 print("Current time:", time.time())

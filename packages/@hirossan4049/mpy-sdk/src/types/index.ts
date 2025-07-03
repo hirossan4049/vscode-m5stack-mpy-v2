@@ -1,5 +1,5 @@
 /**
- * @m5stack/serial-client Type Definitions
+ * @hirossan4049/mpy-sdk Type Definitions
  * 
  * Comprehensive type definitions for M5Stack serial communication
  */

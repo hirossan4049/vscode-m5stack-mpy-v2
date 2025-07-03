@@ -1,5 +1,5 @@
 /**
- * @m5stack/serial-client
+ * @hirossan4049/mpy-sdk
  * 
  * Universal M5Stack serial communication library
  */

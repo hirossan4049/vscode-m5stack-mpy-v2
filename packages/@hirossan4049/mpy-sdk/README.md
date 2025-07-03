@@ -1,6 +1,6 @@
-# @m5stack/serial-client
+# @hirossan4049/mpy-sdk
 
-Universal M5Stack serial communication library for Node.js, Browser, and React Native environments.
+MicroPython SDK for M5Stack devices - Universal serial communication library for Node.js, Browser, and React Native environments.
 
 ## Features
 
@@ -16,7 +16,7 @@ Universal M5Stack serial communication library for Node.js, Browser, and React N
 ## Installation
 
 ```bash
-npm install @m5stack/serial-client
+npm install @hirossan4049/mpy-sdk
 ```
 
 For Node.js environments, you'll also need the serialport dependency:
@@ -30,7 +30,7 @@ npm install serialport
 ### Basic Usage
 
 ```typescript
-import { M5StackClient } from '@m5stack/serial-client';
+import { M5StackClient } from '@hirossan4049/mpy-sdk';
 
 const client = new M5StackClient({
   timeout: 10000,
@@ -75,7 +75,7 @@ await connection.writeFile('/flash/script.py', fileContent, {
 ### Python Dependency Analysis
 
 ```typescript
-import { PythonAnalyzer } from '@m5stack/serial-client';
+import { PythonAnalyzer } from '@hirossan4049/mpy-sdk';
 
 const analyzer = new PythonAnalyzer();
 const code = `
@@ -196,21 +196,21 @@ interface ExecutionResult {
 ### Node.js
 
 ```typescript
-import { M5StackClient } from '@m5stack/serial-client';
+import { M5StackClient } from '@hirossan4049/mpy-sdk';
 // Uses 'serialport' package automatically
 ```
 
 ### Browser (Web Serial API)
 
 ```typescript
-import { M5StackClient } from '@m5stack/serial-client/browser';
+import { M5StackClient } from '@hirossan4049/mpy-sdk/browser';
 // Uses Web Serial API
 ```
 
 ### React Native
 
 ```typescript
-import { M5StackClient } from '@m5stack/serial-client/react-native';
+import { M5StackClient } from '@hirossan4049/mpy-sdk/react-native';
 // Uses react-native-serial
 ```
 
@@ -219,7 +219,7 @@ import { M5StackClient } from '@m5stack/serial-client/react-native';
 ### Custom Protocol Handler
 
 ```typescript
-import { ProtocolHandler } from '@m5stack/serial-client';
+import { ProtocolHandler } from '@hirossan4049/mpy-sdk';
 
 const protocol = new ProtocolHandler();
 const frame = protocol.createFrame(commandBuffer);
@@ -228,7 +228,7 @@ const frame = protocol.createFrame(commandBuffer);
 ### File Transfer Management
 
 ```typescript
-import { FileTransferManager } from '@m5stack/serial-client';
+import { FileTransferManager } from '@hirossan4049/mpy-sdk';
 
 const transferManager = new FileTransferManager(connection);
 await transferManager.uploadFile(filename, content, true, {
@@ -241,7 +241,7 @@ await transferManager.uploadFile(filename, content, true, {
 ### Python Code Analysis
 
 ```typescript
-import { PythonAnalyzer } from '@m5stack/serial-client';
+import { PythonAnalyzer } from '@hirossan4049/mpy-sdk';
 
 const analyzer = new PythonAnalyzer();
 const analysis = await analyzer.analyzeProject('main.py', codeContent);
@@ -261,7 +261,7 @@ import {
   TimeoutError, 
   DeviceBusyError, 
   FileNotFoundError 
-} from '@m5stack/serial-client';
+} from '@hirossan4049/mpy-sdk';
 
 try {
   await connection.executeCode('print("hello")');

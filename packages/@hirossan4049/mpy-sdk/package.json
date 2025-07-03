@@ -1,7 +1,7 @@
 {
-  "name": "@m5stack/serial-client",
+  "name": "@hirossan4049/mpy-sdk",
   "version": "1.0.0",
-  "description": "Universal M5Stack serial communication library for Node.js, Browser, and React Native",
+  "description": "MicroPython SDK for M5Stack devices - Universal serial communication library for Node.js, Browser, and React Native",
   "main": "dist/node/index.js",
   "browser": "dist/browser/index.js",
   "react-native": "dist/react-native/index.js",
@@ -42,16 +42,16 @@
     "embedded",
     "hardware"
   ],
-  "author": "M5Stack Community",
+  "author": "hirossan4049",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/m5stack/serial-client.git"
+    "url": "https://github.com/hirossan4049/mpy-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/m5stack/serial-client/issues"
+    "url": "https://github.com/hirossan4049/mpy-sdk/issues"
   },
-  "homepage": "https://github.com/m5stack/serial-client#readme",
+  "homepage": "https://github.com/hirossan4049/mpy-sdk#readme",
   "engines": {
     "node": ">=14.0.0"
   },

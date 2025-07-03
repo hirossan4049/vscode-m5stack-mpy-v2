@@ -1,11 +1,11 @@
 /**
- * Adapter for integrating @m5stack/serial-client with VS Code extension
+ * Adapter for integrating @hirossan4049/mpy-sdk with VS Code extension
  * 
  * Provides backward compatibility with existing SerialManager interface
  * while using the new unified library underneath.
  */
 
-import { M5StackClient, Connection } from '@m5stack/serial-client';
+import { M5StackClient, Connection } from '@hirossan4049/mpy-sdk';
 import { PortInfo } from '@serialport/bindings-interface';
 
 /**
