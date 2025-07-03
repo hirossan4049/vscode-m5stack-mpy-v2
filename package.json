@@ -142,10 +142,10 @@
 		"compile": "webpack",
 		"lint": "eslint src --ext ts",
 		"package": "webpack --mode production --devtool hidden-source-map",
-		"preintegration-tests": "tsc -p . --outDir out && yarn run compile && yarn run lint",
+		"preintegration-tests": "tsc -p . --outDir out && pnpm run compile && pnpm run lint",
 		"integration-tests": "node ./out/test/runTest.js",
 		"test": "jest",
-		"vscode:prepublish": "yarn run package",
+		"vscode:prepublish": "pnpm run package",
 		"watch": "webpack --watch"
 	},
 	"devDependencies": {
