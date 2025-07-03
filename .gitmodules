@@ -1,0 +1,3 @@
+[submodule "packages/mpy-sdk"]
+	path = packages/mpy-sdk
+	url = git@github.com:hirossan4049/mpy-sdk.git

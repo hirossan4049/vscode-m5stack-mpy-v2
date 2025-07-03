@@ -6,7 +6,7 @@
       "ES6"
     ],
     "sourceMap": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true /* enable all strict type-checking options */,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -17,9 +17,16 @@
     ],
     "types": []
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     ".vscode-test",
     "jest.*",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "packages/mpy-sdk/examples",
+    "packages/mpy-sdk/README.md"
   ]
 }
