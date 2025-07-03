@@ -63,7 +63,7 @@ code ./
 Then you hit F5 and verify that it works.
 See more on https://code.visualstudio.com/api
 
-## Install extention from compiled source
+## Install extension from compiled source
 
 Install the vs code extension packaging tool...
 ```
