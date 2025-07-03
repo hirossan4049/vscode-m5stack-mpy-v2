@@ -181,5 +181,6 @@
 	},
 	"dependencies": {
 		"serialport": "10.0.1"
-	}
+	},
+	"packageManager": "yarn@4.1.1"
 }
