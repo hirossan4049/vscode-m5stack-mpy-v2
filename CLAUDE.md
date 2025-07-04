@@ -10,7 +10,7 @@ This is a VS Code extension for M5Stack MicroPython development. It provides ser
 
 ### Build and Development
 
-**Package Manager: pnpm**
+**Package Manager: pnpm** (Required - do not use npm or yarn)
 
 This project uses pnpm for faster and more efficient dependency management.
 
@@ -33,8 +33,9 @@ pnpm lint
 # Run unit tests
 pnpm test
 
-# Run integration tests
-pnpm integration-tests
+# Run integration tests (requires compilation first)
+pnpm preintegration-tests  # Compiles and lints
+pnpm integration-tests     # Runs VS Code integration tests
 
 # Clean and rebuild
 git clean -fdX
@@ -47,20 +48,26 @@ pnpm install
 # Install vsce globally if not already installed
 npm install -g vsce
 
-# Create the package
+# Create the package (uses pnpm package internally)
 vsce package
 
 # Install the extension locally
 code --install-extension vscode-m5stack-mpy-1.1.10.vsix
 ```
 
-### Running a Single Test
+### Running Tests
 ```bash
-# Run all tests in a specific file
-yarn test path/to/test.test.ts
+# Run all unit tests
+pnpm test
+
+# Run a specific test file
+pnpm test src/serial/SerialConnection.test.ts
 
 # Run tests matching a pattern
-yarn test --testNamePattern="pattern"
+pnpm test --testNamePattern="pattern"
+
+# Debug tests (useful for troubleshooting)
+pnpm test --verbose
 ```
 
 ## Architecture Overview
@@ -70,7 +77,8 @@ yarn test --testNamePattern="pattern"
 1. **Serial Communication Layer** (`src/serial/`)
    - `SerialConnection.ts`: Handles low-level serial port communication with M5Stack devices
    - `SerialManager.ts`: Provides high-level operations like file upload/download and command execution
-   - Native bindings are loaded via `serialPortBindingsLoader.js` for cross-platform compatibility
+   - `Crc.ts`: Implements CRC16-based frame validation for reliable data transfer
+   - Uses custom protocol with frame structure: [HEADER:3] [PAYLOAD] [CRC16:2] [FOOTER:3]
 
 2. **File System Provider** (`src/providers/M5FileSystemProvider.ts`)
    - Implements VS Code's FileSystemProvider interface
@@ -121,3 +129,50 @@ The extension now works seamlessly across different VS Code versions without req
 - Integration tests use VS Code's test runner
 - Mock serial connections for testing without hardware
 - Test files are co-located with source files as `*.test.ts`
+
+### Communication Protocol
+
+The extension implements a custom binary protocol for M5Stack communication:
+
+- **Frame Format**: Fixed 8-byte structure with CRC16 validation
+- **Command Codes**: 9 operation types (0x00-0x08) for different device operations
+- **Chunk Transfer**: Large files transferred in 256-byte chunks
+- **Error Handling**: CRC validation ensures data integrity during transfer
+
+### Package Structure
+
+This is a monorepo containing:
+- **Main Extension**: VS Code extension in root directory
+- **SDK Package**: Separate `mpy-sdk` package under `packages/` (being extracted to `@hirossan4049/mpy-sdk`)
+- **Multi-platform Support**: SDK works in Node.js, Browser, and React Native environments
+
+## Important Implementation Details
+
+### Serial Connection
+- **Baud Rate**: 115200 (hardcoded, do not change)
+- **Connection URI Format**: `m5stackfs:/{COM_PORT}{DEVICE_PATH}`
+- **Example**: `m5stackfs://COM3/flash/main.py`
+
+### File Operations Limitations
+- **Single-file execution only**: The extension cannot resolve imports or dependencies
+- **Manual dependency management**: Users must manually upload all required modules
+- **256-byte chunk size**: Large files are automatically chunked during transfer
+- **Overwrite behavior**: First chunk overwrites, subsequent chunks append
+
+### Command Registration
+All VS Code commands are registered in `extension.ts` with the prefix `m5stack.` or `extension.`
+Key commands:
+- `m5stack.addTreeItem`: Add new M5Stack device
+- `m5stack.refreshTreeData`: Refresh device file tree
+- `m5stack.itemRun`: Execute current file on device
+- `extension.reset.device`: Reset M5Stack device
+
+### Error Handling
+- CRC16 validation on all serial frames
+- Automatic retry mechanism for failed transfers
+- Connection state management in SerialManager (singleton)
+
+### Testing Approach
+- **Unit Tests**: Mock serial connections using `__mocks__/serialport`
+- **Integration Tests**: Use VS Code's test runner with actual extension context
+- **Test Location**: Co-located with source files as `*.test.ts`
